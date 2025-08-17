@@ -1,3 +1,7 @@
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 from flask import Flask, render_template, request, jsonify
 from engine.tiny_uci_engine import Searcher
 from utils.difficulty import set_difficulty

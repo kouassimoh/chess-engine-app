@@ -4,11 +4,15 @@
 # It can play against a human or another engine using the UCI protocol.
 
 import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 import time
 import math
 import random
 import chess
 from utils.difficulty import set_difficulty
+
 
 # ---------- TUNABLES ----------
 PIECE_VALUES = {
@@ -64,6 +68,25 @@ def evaluate(board: chess.Board) -> int:
         for sq in board.pieces(piece_type, chess.BLACK):
             score -= PIECE_VALUES[piece_type] + PST[piece_type][chess.square_mirror(sq)]
     return score if board.turn == chess.WHITE else -score
+
+# ...existing code...
+
+def move_score(board: chess.Board, move: chess.Move, tt_best: chess.Move | None):
+    """Assign a score to a move for move ordering."""
+    score = 0
+    # Prioritize the transposition table best move
+    if tt_best is not None and move == tt_best:
+        score += 10000
+    # Prioritize captures
+    if board.is_capture(move):
+        score += 1000
+    # Prioritize promotions
+    if move.promotion:
+        score += 500
+    # Otherwise, neutral
+    return score
+
+# ...existing code...
 
 # ---------- MOVE ORDERING ----------
 def ordered_moves(board: chess.Board, tt_best: chess.Move | None):
