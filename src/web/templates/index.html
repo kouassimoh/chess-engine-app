@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chess Engine</title>
+    <link rel="stylesheet" href="static/styles.css"> <!-- Link to CSS for styling -->
+    <script src="static/chessboard.js" defer></script> <!-- Link to JavaScript for chessboard functionality -->
+</head>
+<body>
+    <div class="container">
+        <h1>Chess Game</h1>
+        <div id="difficulty-selection">
+            <label for="difficulty">Select Difficulty:</label>
+            <select id="difficulty">
+                <option value="easy">Easy</option>
+                <option value="hard">Hard</option>
+                <option value="master">Master</option>
+            </select>
+        </div>
+        <div id="chessboard" class="chessboard"></div> <!-- Placeholder for the chessboard -->
+        <div id="controls">
+            <button id="start-button">Start Game</button>
+            <button id="reset-button">Reset Game</button>
+        </div>
+        <div id="status"></div> <!-- Area to display game status or messages -->
+    </div>
+    <script>
+        // Initialize the chessboard and set up event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            const board = ChessBoard('chessboard', {
+                draggable: true,
+                position: 'start',
+                onDrop: handleMove,
+                onSnapEnd: onSnapEnd,
+            });
+
+            document.getElementById('start-button').addEventListener('click', board.start);
+            document.getElementById('reset-button').addEventListener('click', board.clear);
+        });
+
+        function handleMove(source, target) {
+            // Handle the move logic here, including communication with the backend
+            // This function will send the move to the server and update the board state
+        }
+
+        function onSnapEnd() {
+            // Update the board position after a move is made
+        }
+    </script>
+</body>
+</html>

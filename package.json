@@ -1,0 +1,24 @@
+{
+  "name": "chess-engine-app",
+  "version": "1.0.0",
+  "description": "A chess engine application that allows users to play against an AI or another player with adjustable difficulty levels.",
+  "main": "src/web/app.py",
+  "scripts": {
+    "start": "python src/web/app.py"
+  },
+  "dependencies": {
+    "flask": "^2.0.1",
+    "flask-cors": "^3.0.10"
+  },
+  "devDependencies": {
+    "jquery": "^3.6.0"
+  },
+  "keywords": [
+    "chess",
+    "engine",
+    "AI",
+    "game"
+  ],
+  "author": "Your Name",
+  "license": "MIT"
+}
